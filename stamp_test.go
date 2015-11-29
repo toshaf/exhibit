@@ -5,5 +5,5 @@ import (
 )
 
 func TestSimpleApprovedValue(t *testing.T) {
-	stamp(t, "hi")
+	RubberStamp{t}.Stamp("hi")
 }
