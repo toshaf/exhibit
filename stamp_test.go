@@ -1,9 +1,9 @@
-package approve
+package rubber
 
 import (
 	"testing"
 )
 
 func TestSimpleApprovedValue(t *testing.T) {
-	approve(t, "hi")
+	stamp(t, "hi")
 }

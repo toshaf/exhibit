@@ -1,4 +1,4 @@
-package approve
+package rubber
 
 import (
 	"flag"
@@ -16,7 +16,7 @@ func init() {
 	flag.Parse()
 }
 
-func approve(t *testing.T, value string) {
+func stamp(t *testing.T, value string) {
 	// program counter, filename, line, ok
 	pc, fname, _, ok := runtime.Caller(1)
 	if ok {
@@ -24,7 +24,7 @@ func approve(t *testing.T, value string) {
 		caller := runtime.FuncForPC(pc)
 
 		dir := path.Dir(fname)
-		file := path.Join(dir, caller.Name()+".approved")
+		file := path.Join(dir, caller.Name()+".stamped")
 
 		if approved, err := ioutil.ReadFile(file); err != nil {
 			t.Logf("Could not read approved value from '%s'", file)
