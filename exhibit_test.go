@@ -11,5 +11,9 @@ func Test_TestNameRegex(t *testing.T){
 }
 
 func TestSimpleApprovedValue(t *testing.T) {
-	Exhibit{t}.Present(String("hi"))
+	Exhibit{t}.Present(Text("hi"))
+}
+
+func TestLabelledValue(t *testing.T) {
+  Exhibit{t}.PresentLabelled(Text("banana"), "a")
 }

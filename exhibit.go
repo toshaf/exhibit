@@ -35,19 +35,28 @@ type Exhibit struct {
 
 type Evidence interface {
   io.Reader
+  Extension() string
 }
 
-func String(v string) Evidence {
-  return strings.NewReader(v)
+type TextEvidence struct {
+  io.Reader
 }
 
-func makeEvidenceFilename(caller *callerInfo, label string) string {
+func (TextEvidence) Extension() string {
+  return "txt"
+}
+
+func Text(v string) Evidence {
+  return TextEvidence{strings.NewReader(v)}
+}
+
+func makeEvidenceFilename(evidence Evidence, caller *callerInfo, label string) string {
   label = strings.TrimSpace(label)
   if len(label) > 0 {
     label = "." + string(whitespace.ReplaceAll([]byte(label), []byte{'_'}))
   }
 
-  name := fmt.Sprintf("%s%s.exhibit", caller.function, label)
+  name := fmt.Sprintf("%s.exhibit%s.%s", caller.function, label, evidence.Extension())
   dir := path.Dir(caller.file)
   return path.Join(dir, name)
 }
@@ -97,7 +106,7 @@ func (ex Exhibit) PresentLabelled(evidence Evidence, label string){
     t.Errorf("Could not read content: %s", e)
   }
 
-  file := makeEvidenceFilename(caller, label)
+  file := makeEvidenceFilename(evidence, caller, label)
 
   if approved, err := ioutil.ReadFile(file); err != nil {
     t.Logf("Could not read approved value from '%s': %s", file, err)
