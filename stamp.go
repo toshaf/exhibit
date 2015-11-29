@@ -31,8 +31,9 @@ func stamp(t *testing.T, value string) {
 			if *fixup {
 				t.Logf("Fixing up :D")
 				ioutil.WriteFile(file, []byte(value), 0755)
+			} else {
+				t.Error()
 			}
-			t.Error()
 			return
 		} else {
 			if value != string(approved) {
