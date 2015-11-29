@@ -38,16 +38,16 @@ type Evidence interface {
   Extension() string
 }
 
-type TextEvidence struct {
+type textEvidence struct {
   io.Reader
 }
 
-func (TextEvidence) Extension() string {
+func (textEvidence) Extension() string {
   return "txt"
 }
 
 func Text(v string) Evidence {
-  return TextEvidence{strings.NewReader(v)}
+  return textEvidence{strings.NewReader(v)}
 }
 
 func makeEvidenceFilename(evidence Evidence, caller *callerInfo, label string) string {
