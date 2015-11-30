@@ -10,7 +10,7 @@ type textEvidence struct {
 }
 
 func (textEvidence) Extension() string {
-	return "txt"
+	return ".txt"
 }
 
 func TextString(v string) Evidence {

@@ -22,12 +22,6 @@ func (ex Exhibit) Present(evidence Evidence) {
 func (ex Exhibit) PresentLabelled(evidence Evidence, label string) {
 	t := ex.T
 
-	caller, err := getCallerInfo()
-	if err != nil {
-		t.Errorf("Stack walk failed: %s", err)
-		return
-	}
-
 	var value string
 	if v, e := ioutil.ReadAll(evidence); e == nil {
 		value = string(v)
@@ -35,20 +29,22 @@ func (ex Exhibit) PresentLabelled(evidence Evidence, label string) {
 		t.Errorf("Could not read content: %s", e)
 	}
 
-	file := makeEvidenceFilename(evidence, caller, label)
+	file, err := makeEvidenceFilename(evidence, label)
+	if err != nil {
+		t.Errorf(err.Error())
+		return
+	}
+
 	if *fixup {
-		t.Logf("Fixing up :D")
+		t.Logf(file)
 		ioutil.WriteFile(file, []byte(value), 0755)
 		return
 	}
 
 	if approved, err := ioutil.ReadFile(file); err != nil {
-		t.Logf("Could not read approved value from '%s': %s", file, err)
+		t.Errorf("Could not read evidence from file '%s'", file)
+	} else if value != string(approved) {
+		t.Logf("Expected '%s' but got '%s'", approved, value)
 		t.Error()
-	} else {
-		if value != string(approved) {
-			t.Logf("Expected '%s' but got '%s'", approved, value)
-			t.Error()
-		}
 	}
 }

@@ -12,7 +12,7 @@ type jsonEvidence struct {
 }
 
 func (*jsonEvidence) Extension() string {
-	return "json"
+	return ".json"
 }
 
 func JSON(v []byte) Evidence {
