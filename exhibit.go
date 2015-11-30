@@ -48,13 +48,13 @@ func (ex Exhibit) PresentLabelled(evidence Evidence, label string) {
 		return
 	} else {
 		if value != string(approved) {
-      if *fixup {
-        t.Logf("Fixing up :D")
-        ioutil.WriteFile(file, []byte(value), 0755)
-      } else {
-        t.Logf("Expected '%s' but got '%s'", approved, value)
-        t.Error()
-      }
+			if *fixup {
+				t.Logf("Fixing up :D")
+				ioutil.WriteFile(file, []byte(value), 0755)
+			} else {
+				t.Logf("Expected '%s' but got '%s'", approved, value)
+				t.Error()
+			}
 		}
 	}
 }

@@ -1,8 +1,8 @@
 package exhibit
 
 import (
-  "io"
-  "strings"
+	"io"
+	"strings"
 )
 
 type textEvidence struct {
@@ -18,5 +18,5 @@ func TextString(v string) Evidence {
 }
 
 func Text(v []byte) Evidence {
-  return TextString(string(v))
+	return TextString(string(v))
 }

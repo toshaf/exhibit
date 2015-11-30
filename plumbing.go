@@ -1,12 +1,12 @@
 package exhibit
 
 import (
-  "runtime"
-  "path"
-  "strings"
-  "fmt"
-  "flag"
-  "regexp"
+	"flag"
+	"fmt"
+	"path"
+	"regexp"
+	"runtime"
+	"strings"
 )
 
 var (
