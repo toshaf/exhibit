@@ -1,14 +1,9 @@
-package exhibit
+package exhibit_test
 
 import (
 	"testing"
+  . "exhibit"
 )
-
-func Test_TestNameRegex(t *testing.T) {
-	if testname.Match([]byte("exhibit.TestSimpleApprovedValue")) == false {
-		t.Errorf("Should have matched exhibit.TestSimpleApprovedValue")
-	}
-}
 
 func TestSimpleApprovedValue(t *testing.T) {
 	Exhibit{t}.Present(TextString("hi"))
