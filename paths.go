@@ -4,12 +4,10 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+    "path"
 )
 
-var (
-	whitespace *regexp.Regexp = regexp.MustCompile(`\s+`)
-	prefix     *regexp.Regexp = regexp.MustCompile(`(^.*\.)?`)
-)
+var whitespace *regexp.Regexp = regexp.MustCompile(`\s+`)
 
 func makeEvidenceFilename(evidence Evidence, label string) (string, error) {
 	caller, err := getCallerInfo()
@@ -22,9 +20,7 @@ func makeEvidenceFilename(evidence Evidence, label string) (string, error) {
 		label = "-" + string(whitespace.ReplaceAllString(label, "_"))
 	}
 
-	function := prefix.ReplaceAllString(caller.function, "")
+	name := fmt.Sprintf("%s.exhibit%s%s", caller.function, label, evidence.Extension())
 
-	name := fmt.Sprintf("%s.exhibit%s%s", function, label, evidence.Extension())
-
-	return fmt.Sprintf("%s.%s", caller.file, name), nil
+	return path.Join(path.Dir(caller.file), name), nil
 }

@@ -9,7 +9,7 @@ func TestSimpleApprovedValue(t *testing.T) {
 	Exhibit{t}.A(TextString("hi"))
 }
 
-func Test_alphbet_methods(t *testing.T){
+func TestMultipleExhibits(t *testing.T){
   exhibit := Exhibit{t}
 
   exhibit.A(TextString("This is the content of exhibit A"))
