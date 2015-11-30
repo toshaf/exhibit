@@ -36,25 +36,19 @@ func (ex Exhibit) PresentLabelled(evidence Evidence, label string) {
 	}
 
 	file := makeEvidenceFilename(evidence, caller, label)
+	if *fixup {
+		t.Logf("Fixing up :D")
+		ioutil.WriteFile(file, []byte(value), 0755)
+		return
+	}
 
 	if approved, err := ioutil.ReadFile(file); err != nil {
 		t.Logf("Could not read approved value from '%s': %s", file, err)
-		if *fixup {
-			t.Logf("Fixing up :D")
-			ioutil.WriteFile(file, []byte(value), 0755)
-		} else {
-			t.Error()
-		}
-		return
+		t.Error()
 	} else {
 		if value != string(approved) {
-			if *fixup {
-				t.Logf("Fixing up :D")
-				ioutil.WriteFile(file, []byte(value), 0755)
-			} else {
-				t.Logf("Expected '%s' but got '%s'", approved, value)
-				t.Error()
-			}
+			t.Logf("Expected '%s' but got '%s'", approved, value)
+			t.Error()
 		}
 	}
 }
