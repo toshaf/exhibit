@@ -3,7 +3,6 @@ package exhibit
 import (
 	"flag"
 	"fmt"
-	"path"
 	"regexp"
 	"runtime"
 	"strings"
@@ -13,6 +12,7 @@ var (
 	fixup      *bool
 	whitespace *regexp.Regexp
 	testname   *regexp.Regexp
+	prefix     *regexp.Regexp
 	maxdepth   int
 )
 
@@ -23,18 +23,18 @@ func init() {
 
 	whitespace = regexp.MustCompile(`\s+`)
 	testname = regexp.MustCompile(`^.*\.Test[^a-z].*`)
+	prefix = regexp.MustCompile(`(^.*\.)?`)
 	maxdepth = 12
 }
 
 func makeEvidenceFilename(evidence Evidence, caller *callerInfo, label string) string {
 	label = strings.TrimSpace(label)
 	if len(label) > 0 {
-		label = "." + string(whitespace.ReplaceAll([]byte(label), []byte{'_'}))
+		label = "-" + string(whitespace.ReplaceAllString(label, "_"))
 	}
 
-	name := fmt.Sprintf("%s.exhibit%s.%s", caller.function, label, evidence.Extension())
-	dir := path.Dir(caller.file)
-	return path.Join(dir, name)
+	name := fmt.Sprintf("%s.exhibit%s.%s", prefix.ReplaceAllString(caller.function, ""), label, evidence.Extension())
+	return fmt.Sprintf("%s.%s", caller.file, name)
 }
 
 type callerInfo struct {
