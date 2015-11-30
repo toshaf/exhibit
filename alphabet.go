@@ -1,105 +1,105 @@
 package exhibit
 
 func (ex Exhibit) A(evidence Evidence){
-  ex.PresentLabelled(evidence, "a")
+  ex.present(evidence, "a")
 }
 
 func (ex Exhibit) B(evidence Evidence){
-  ex.PresentLabelled(evidence, "b")
+  ex.present(evidence, "b")
 }
 
 func (ex Exhibit) C(evidence Evidence){
-  ex.PresentLabelled(evidence, "c")
+  ex.present(evidence, "c")
 }
 
 func (ex Exhibit) D(evidence Evidence){
-  ex.PresentLabelled(evidence, "d")
+  ex.present(evidence, "d")
 }
 
 func (ex Exhibit) E(evidence Evidence){
-  ex.PresentLabelled(evidence, "e")
+  ex.present(evidence, "e")
 }
 
 func (ex Exhibit) F(evidence Evidence){
-  ex.PresentLabelled(evidence, "f")
+  ex.present(evidence, "f")
 }
 
 func (ex Exhibit) G(evidence Evidence){
-  ex.PresentLabelled(evidence, "g")
+  ex.present(evidence, "g")
 }
 
 func (ex Exhibit) H(evidence Evidence){
-  ex.PresentLabelled(evidence, "h")
+  ex.present(evidence, "h")
 }
 
 func (ex Exhibit) I(evidence Evidence){
-  ex.PresentLabelled(evidence, "i")
+  ex.present(evidence, "i")
 }
 
 func (ex Exhibit) J(evidence Evidence){
-  ex.PresentLabelled(evidence, "j")
+  ex.present(evidence, "j")
 }
 
 func (ex Exhibit) K(evidence Evidence){
-  ex.PresentLabelled(evidence, "k")
+  ex.present(evidence, "k")
 }
 
 func (ex Exhibit) L(evidence Evidence){
-  ex.PresentLabelled(evidence, "l")
+  ex.present(evidence, "l")
 }
 
 func (ex Exhibit) M(evidence Evidence){
-  ex.PresentLabelled(evidence, "m")
+  ex.present(evidence, "m")
 }
 
 func (ex Exhibit) N(evidence Evidence){
-  ex.PresentLabelled(evidence, "n")
+  ex.present(evidence, "n")
 }
 
 func (ex Exhibit) O(evidence Evidence){
-  ex.PresentLabelled(evidence, "o")
+  ex.present(evidence, "o")
 }
 
 func (ex Exhibit) P(evidence Evidence){
-  ex.PresentLabelled(evidence, "p")
+  ex.present(evidence, "p")
 }
 
 func (ex Exhibit) Q(evidence Evidence){
-  ex.PresentLabelled(evidence, "q")
+  ex.present(evidence, "q")
 }
 
 func (ex Exhibit) R(evidence Evidence){
-  ex.PresentLabelled(evidence, "r")
+  ex.present(evidence, "r")
 }
 
 func (ex Exhibit) S(evidence Evidence){
-  ex.PresentLabelled(evidence, "s")
+  ex.present(evidence, "s")
 }
 
 func (ex Exhibit) T(evidence Evidence){
-  ex.PresentLabelled(evidence, "t")
+  ex.present(evidence, "t")
 }
 
 func (ex Exhibit) U(evidence Evidence){
-  ex.PresentLabelled(evidence, "u")
+  ex.present(evidence, "u")
 }
 
 func (ex Exhibit) V(evidence Evidence){
-  ex.PresentLabelled(evidence, "v")
+  ex.present(evidence, "v")
 }
 
 func (ex Exhibit) W(evidence Evidence){
-  ex.PresentLabelled(evidence, "w")
+  ex.present(evidence, "w")
 }
 
 func (ex Exhibit) X(evidence Evidence){
-  ex.PresentLabelled(evidence, "x")
+  ex.present(evidence, "x")
 }
 
 func (ex Exhibit) Y(evidence Evidence){
-  ex.PresentLabelled(evidence, "y")
+  ex.present(evidence, "y")
 }
 
 func (ex Exhibit) Z(evidence Evidence){
-  ex.PresentLabelled(evidence, "z")
+  ex.present(evidence, "z")
 }

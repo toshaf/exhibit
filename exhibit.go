@@ -15,11 +15,7 @@ type Evidence interface {
 	Extension() string
 }
 
-func (ex Exhibit) Present(evidence Evidence) {
-	ex.PresentLabelled(evidence, "")
-}
-
-func (ex Exhibit) PresentLabelled(evidence Evidence, label string) {
+func (ex Exhibit) present(evidence Evidence, label string) {
 	t := ex.Testing
 
 	var value string

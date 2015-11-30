@@ -6,12 +6,14 @@ import (
 )
 
 func TestSimpleApprovedValue(t *testing.T) {
-	Exhibit{t}.Present(TextString("hi"))
+	Exhibit{t}.A(TextString("hi"))
 }
 
-func TestLabelledValue(t *testing.T) {
-	value := []byte("banana")
-	Exhibit{t}.PresentLabelled(Text(value), "a")
+func Test_alphbet_methods(t *testing.T){
+  exhibit := Exhibit{t}
+
+  exhibit.A(TextString("This is the content of exhibit A"))
+  exhibit.B(TextString("This is the content of exhibit B"))
 }
 
 type Person struct {
@@ -25,5 +27,5 @@ func TestSomeJson(t *testing.T) {
 		{"Bob", 65},
 		{"Jeff", 103},
 	}
-	Exhibit{t}.Present(JSONObj(people))
+	Exhibit{t}.A(JSONObj(people))
 }
