@@ -37,7 +37,7 @@ func (ex Exhibit) PresentLabelled(evidence Evidence, label string) {
 
 	if *fixup {
 		t.Logf(file)
-		ioutil.WriteFile(file, []byte(value), 0755)
+		ioutil.WriteFile(file, []byte(value), 0644)
 		return
 	}
 
