@@ -7,7 +7,7 @@ import (
 )
 
 type Exhibit struct {
-	T *testing.T
+	Testing *testing.T
 }
 
 type Evidence interface {
@@ -20,7 +20,7 @@ func (ex Exhibit) Present(evidence Evidence) {
 }
 
 func (ex Exhibit) PresentLabelled(evidence Evidence, label string) {
-	t := ex.T
+	t := ex.Testing
 
 	var value string
 	if v, e := ioutil.ReadAll(evidence); e == nil {
