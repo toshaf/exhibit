@@ -11,9 +11,24 @@ func Test_TestNameRegex(t *testing.T) {
 }
 
 func TestSimpleApprovedValue(t *testing.T) {
-	Exhibit{t}.Present(Text("hi"))
+	Exhibit{t}.Present(TextString("hi"))
 }
 
 func TestLabelledValue(t *testing.T) {
-	Exhibit{t}.PresentLabelled(Text("banana"), "a")
+  value := []byte("banana")
+	Exhibit{t}.PresentLabelled(Text(value), "a")
+}
+
+type Person struct {
+  Name string
+  Age int
+}
+
+func TestSomeJson(t *testing.T){
+  people := []Person{
+    { "Ann", 38 },
+    { "Bob", 65 },
+    { "Jeff", 103 },
+  }
+  Exhibit{t}.Present(JSONObj(people))
 }
