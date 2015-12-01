@@ -6,8 +6,6 @@ import (
 	"runtime"
 )
 
-const maxdepth int = 12
-
 var testname *regexp.Regexp = regexp.MustCompile(`^.*\.Test[^a-z].*`)
 
 type callerInfo struct {
@@ -16,7 +14,7 @@ type callerInfo struct {
 
 func getCallerInfo() (*callerInfo, error) {
 
-	for i := 2; i < maxdepth; i++ {
+	for i := 2; ; i++ {
 
 		pc, file, _, ok := runtime.Caller(i)
 		if !ok {
@@ -32,6 +30,4 @@ func getCallerInfo() (*callerInfo, error) {
 			}, nil
 		}
 	}
-
-	return nil, fmt.Errorf("Max stack depth (%d) reached, no test method found", maxdepth)
 }
