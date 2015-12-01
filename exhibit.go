@@ -31,16 +31,15 @@ func (ex Exhibit) present(evidence Evidence, label string) {
 		return
 	}
 
-	if *fixup {
-		t.Logf(file)
-		ioutil.WriteFile(file, []byte(value), 0644)
-		return
-	}
-
 	if approved, err := ioutil.ReadFile(file); err != nil {
 		t.Errorf("Could not read evidence from file '%s'", file)
 	} else if value != string(approved) {
-		t.Logf("Expected '%s' but got '%s'", approved, value)
-		t.Error()
+		t.Errorf("Expected '%s' but got '%s'", approved, value)
+	}
+
+	if *snapshot {
+		ioutil.WriteFile(file, []byte(value), 0644)
+		t.Logf("Writing Exhibit %s snapshot to %s", label, file)
+		return
 	}
 }

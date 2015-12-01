@@ -2,10 +2,10 @@ package exhibit
 
 import "flag"
 
-var fixup *bool
+var snapshot *bool
 
 func init() {
-	fixup = flag.Bool("fixup", false, "Fixup failing tests by overwriting the approved content")
+	snapshot = flag.Bool("snapshot", false, "Snapshot all evidence, skips dependent tests")
 
 	flag.Parse()
 }
