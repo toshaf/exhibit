@@ -6,18 +6,16 @@ import (
 	"testing"
 )
 
-type Exhibit struct {
-	Testing *testing.T
-}
+type E struct { }
+
+var Exhibit E
 
 type Evidence interface {
 	io.Reader
 	Extension() string
 }
 
-func (ex Exhibit) present(evidence Evidence, label string) {
-	t := ex.Testing
-
+func (E) present(evidence Evidence, label string, t *testing.T) {
 	var value string
 	if v, e := ioutil.ReadAll(evidence); e == nil {
 		value = string(v)

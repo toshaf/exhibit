@@ -6,14 +6,12 @@ import (
 )
 
 func TestSimpleApprovedValue(t *testing.T) {
-	Exhibit{t}.A(TextString("hi"))
+	Exhibit.A(TextString("hi"), t)
 }
 
 func TestMultipleExhibits(t *testing.T){
-  exhibit := Exhibit{t}
-
-  exhibit.A(TextString("This is the content of exhibit A"))
-  exhibit.B(TextString("This is the content of exhibit B"))
+  Exhibit.A(TextString("This is the content of exhibit A"), t)
+  Exhibit.B(TextString("This is the content of exhibit B"), t)
 }
 
 type Person struct {
@@ -27,5 +25,5 @@ func TestSomeJson(t *testing.T) {
 		{"Bob", 65},
 		{"Jeff", 103},
 	}
-	Exhibit{t}.A(JSONObj(people))
+	Exhibit.A(JSONObj(people), t)
 }

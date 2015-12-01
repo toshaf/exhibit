@@ -1,105 +1,107 @@
 package exhibit
 
-func (ex Exhibit) A(evidence Evidence){
-  ex.present(evidence, "a")
+import "testing"
+
+func (e E) A(evidence Evidence, t *testing.T){
+  e.present(evidence, "a", t)
 }
 
-func (ex Exhibit) B(evidence Evidence){
-  ex.present(evidence, "b")
+func (e E) B(evidence Evidence, t *testing.T){
+  e.present(evidence, "b", t)
 }
 
-func (ex Exhibit) C(evidence Evidence){
-  ex.present(evidence, "c")
+func (e E) C(evidence Evidence, t *testing.T){
+  e.present(evidence, "c", t)
 }
 
-func (ex Exhibit) D(evidence Evidence){
-  ex.present(evidence, "d")
+func (e E) D(evidence Evidence, t *testing.T){
+  e.present(evidence, "d", t)
 }
 
-func (ex Exhibit) E(evidence Evidence){
-  ex.present(evidence, "e")
+func (e E) E(evidence Evidence, t *testing.T){
+  e.present(evidence, "e", t)
 }
 
-func (ex Exhibit) F(evidence Evidence){
-  ex.present(evidence, "f")
+func (e E) F(evidence Evidence, t *testing.T){
+  e.present(evidence, "f", t)
 }
 
-func (ex Exhibit) G(evidence Evidence){
-  ex.present(evidence, "g")
+func (e E) G(evidence Evidence, t *testing.T){
+  e.present(evidence, "g", t)
 }
 
-func (ex Exhibit) H(evidence Evidence){
-  ex.present(evidence, "h")
+func (e E) H(evidence Evidence, t *testing.T){
+  e.present(evidence, "h", t)
 }
 
-func (ex Exhibit) I(evidence Evidence){
-  ex.present(evidence, "i")
+func (e E) I(evidence Evidence, t *testing.T){
+  e.present(evidence, "i", t)
 }
 
-func (ex Exhibit) J(evidence Evidence){
-  ex.present(evidence, "j")
+func (e E) J(evidence Evidence, t *testing.T){
+  e.present(evidence, "j", t)
 }
 
-func (ex Exhibit) K(evidence Evidence){
-  ex.present(evidence, "k")
+func (e E) K(evidence Evidence, t *testing.T){
+  e.present(evidence, "k", t)
 }
 
-func (ex Exhibit) L(evidence Evidence){
-  ex.present(evidence, "l")
+func (e E) L(evidence Evidence, t *testing.T){
+  e.present(evidence, "l", t)
 }
 
-func (ex Exhibit) M(evidence Evidence){
-  ex.present(evidence, "m")
+func (e E) M(evidence Evidence, t *testing.T){
+  e.present(evidence, "m", t)
 }
 
-func (ex Exhibit) N(evidence Evidence){
-  ex.present(evidence, "n")
+func (e E) N(evidence Evidence, t *testing.T){
+  e.present(evidence, "n", t)
 }
 
-func (ex Exhibit) O(evidence Evidence){
-  ex.present(evidence, "o")
+func (e E) O(evidence Evidence, t *testing.T){
+  e.present(evidence, "o", t)
 }
 
-func (ex Exhibit) P(evidence Evidence){
-  ex.present(evidence, "p")
+func (e E) P(evidence Evidence, t *testing.T){
+  e.present(evidence, "p", t)
 }
 
-func (ex Exhibit) Q(evidence Evidence){
-  ex.present(evidence, "q")
+func (e E) Q(evidence Evidence, t *testing.T){
+  e.present(evidence, "q", t)
 }
 
-func (ex Exhibit) R(evidence Evidence){
-  ex.present(evidence, "r")
+func (e E) R(evidence Evidence, t *testing.T){
+  e.present(evidence, "r", t)
 }
 
-func (ex Exhibit) S(evidence Evidence){
-  ex.present(evidence, "s")
+func (e E) S(evidence Evidence, t *testing.T){
+  e.present(evidence, "s", t)
 }
 
-func (ex Exhibit) T(evidence Evidence){
-  ex.present(evidence, "t")
+func (e E) T(evidence Evidence, t *testing.T){
+  e.present(evidence, "t", t)
 }
 
-func (ex Exhibit) U(evidence Evidence){
-  ex.present(evidence, "u")
+func (e E) U(evidence Evidence, t *testing.T){
+  e.present(evidence, "u", t)
 }
 
-func (ex Exhibit) V(evidence Evidence){
-  ex.present(evidence, "v")
+func (e E) V(evidence Evidence, t *testing.T){
+  e.present(evidence, "v", t)
 }
 
-func (ex Exhibit) W(evidence Evidence){
-  ex.present(evidence, "w")
+func (e E) W(evidence Evidence, t *testing.T){
+  e.present(evidence, "w", t)
 }
 
-func (ex Exhibit) X(evidence Evidence){
-  ex.present(evidence, "x")
+func (e E) X(evidence Evidence, t *testing.T){
+  e.present(evidence, "x", t)
 }
 
-func (ex Exhibit) Y(evidence Evidence){
-  ex.present(evidence, "y")
+func (e E) Y(evidence Evidence, t *testing.T){
+  e.present(evidence, "y", t)
 }
 
-func (ex Exhibit) Z(evidence Evidence){
-  ex.present(evidence, "z")
+func (e E) Z(evidence Evidence, t *testing.T){
+  e.present(evidence, "z", t)
 }
