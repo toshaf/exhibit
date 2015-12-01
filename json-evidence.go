@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"time"
 )
 
@@ -34,6 +36,15 @@ func JSONObj(v interface{}) Evidence {
 	} else {
 		return JSON(b)
 	}
+}
+
+func JSONReader(r io.Reader) Evidence {
+	b, e := ioutil.ReadAll(r)
+	if e != nil {
+		return writeError(e)
+	}
+
+	return JSON(b)
 }
 
 func writeError(e error) Evidence {

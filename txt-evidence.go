@@ -20,3 +20,7 @@ func TextString(v string) Evidence {
 func Text(v []byte) Evidence {
 	return TextString(string(v))
 }
+
+func TextReader(r io.Reader) Evidence {
+	return textEvidence{r}
+}
