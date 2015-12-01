@@ -20,7 +20,9 @@ func makeEvidenceFilename(evidence Evidence, label string) (string, error) {
 		label = "-" + string(whitespace.ReplaceAllString(label, "_"))
 	}
 
-	name := fmt.Sprintf("%s.exhibit%s%s", caller.function, label, evidence.Extension())
+    _,function := path.Split(caller.function)
+
+	name := fmt.Sprintf("%s.exhibit%s%s", function, label, evidence.Extension())
 
 	return path.Join(path.Dir(caller.file), name), nil
 }
