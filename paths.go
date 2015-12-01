@@ -2,9 +2,9 @@ package exhibit
 
 import (
 	"fmt"
+	"path"
 	"regexp"
 	"strings"
-    "path"
 )
 
 var whitespace *regexp.Regexp = regexp.MustCompile(`\s+`)
@@ -20,7 +20,7 @@ func makeEvidenceFilename(evidence Evidence, label string) (string, error) {
 		label = "-" + string(whitespace.ReplaceAllString(label, "_"))
 	}
 
-    _,function := path.Split(caller.function)
+	_, function := path.Split(caller.function)
 
 	name := fmt.Sprintf("%s.exhibit%s%s", function, label, evidence.Extension())
 

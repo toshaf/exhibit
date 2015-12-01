@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-type E struct { }
+type E struct{}
 
 var Exhibit E
 
