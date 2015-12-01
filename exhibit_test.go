@@ -1,7 +1,7 @@
 package exhibit_test
 
 import (
-	. "exhibit"
+	. "github.com/toshaf/exhibit"
 	"testing"
 )
 
