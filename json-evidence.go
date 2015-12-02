@@ -23,6 +23,8 @@ func JSON(v []byte) Evidence {
 		return writeError(e)
 	}
 
+    buff.Write([]byte{'\n'})
+
 	return &jsonEvidence{buff}
 }
 
