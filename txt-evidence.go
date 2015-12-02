@@ -1,8 +1,8 @@
 package exhibit
 
 import (
+    "bytes"
 	"io"
-	"strings"
 )
 
 type textEvidence struct {
@@ -14,13 +14,19 @@ func (textEvidence) Extension() string {
 }
 
 func TextString(v string) Evidence {
-	return textEvidence{strings.NewReader(v)}
+	return Text([]byte(v))
 }
 
 func Text(v []byte) Evidence {
-	return TextString(string(v))
+	b := bytes.NewBuffer(v)
+
+    return TextReader(b)
 }
 
 func TextReader(r io.Reader) Evidence {
-	return textEvidence{r}
+    var b bytes.Buffer
+    io.Copy(&b, r)
+    b.Write([]byte{'\n'})
+
+	return textEvidence{&b}
 }
