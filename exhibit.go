@@ -6,10 +6,14 @@ import (
 	"testing"
 )
 
+//E is the Exhibit type. All the assertions are attached to this object.
 type E struct{}
 
+//Exhibit is the instance which is used for the assertions.
 var Exhibit E
 
+//Evidence is an interface which you can impliment to create other types of evidence
+//assertions.
 type Evidence interface {
 	io.Reader
 	Extension() string

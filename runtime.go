@@ -6,7 +6,7 @@ import (
 	"runtime"
 )
 
-var testname *regexp.Regexp = regexp.MustCompile(`^.*\.Test[^a-z].*`)
+var testname = regexp.MustCompile(`^.*\.Test[^a-z].*`)
 
 type callerInfo struct {
 	file, function string

@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-var whitespace *regexp.Regexp = regexp.MustCompile(`\s+`)
+var whitespace = regexp.MustCompile(`\s+`)
 
 func makeEvidenceFilename(evidence Evidence, label string) (string, error) {
 	caller, err := getCallerInfo()
