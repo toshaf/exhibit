@@ -37,11 +37,13 @@ func JSONString(v string) Evidence {
 
 //JSONObj will marshal the given object to json and return a json Evidence object.
 func JSONObj(v interface{}) Evidence {
-	if b, e := json.Marshal(v); e != nil {
+	var b []byte
+	var e error
+	if b, e = json.Marshal(v); e != nil {
 		return writeError(e)
-	} else {
-		return JSON(b)
 	}
+
+	return JSON(b)
 }
 
 //JSONReader takes a reader interface that will be read and return a json Evidence object.
