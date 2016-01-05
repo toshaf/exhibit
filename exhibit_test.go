@@ -1,6 +1,7 @@
 package exhibit_test
 
 import (
+	"encoding/xml"
 	. "github.com/toshaf/exhibit"
 	"testing"
 )
@@ -20,6 +21,18 @@ type Person struct {
 }
 
 type People []Person
+
+func (people People) MarshalXML(enc *xml.Encoder, start xml.StartElement) error {
+	name := xml.Name{Space: "", Local: "People"}
+
+	enc.EncodeToken(xml.StartElement{Name: name})
+	for _, person := range people {
+		enc.Encode(person)
+	}
+	enc.EncodeToken(xml.EndElement{Name: name})
+
+	return nil
+}
 
 var people = People{
 	{"Ann", 38},
