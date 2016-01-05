@@ -1,8 +1,9 @@
 package exhibit_test
 
 import (
-	. "github.com/toshaf/exhibit"
 	"testing"
+
+	. "github.com/toshaf/exhibit"
 )
 
 func TestSimpleApprovedValue(t *testing.T) {
@@ -26,4 +27,19 @@ func TestSomeJson(t *testing.T) {
 		{"Jeff", 103},
 	}
 	Exhibit.A(JSONObj(people), t)
+}
+
+type Monkey struct {
+	Name           string
+	Bananas        int
+	AfraidOfTarzan bool
+}
+
+func TestSomeXml(t *testing.T) {
+	troop := []Monkey{
+		{"Bubbles", 5, true},
+		{"King Kong", 1000, false},
+	}
+
+	Exhibit.A(XMLObj(troop), t)
 }
