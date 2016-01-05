@@ -20,10 +20,10 @@ func (*jsonEvidence) Extension() string {
 func JSON(v []byte) Evidence {
 	var buff bytes.Buffer
 	if e := json.Indent(&buff, v, "", "\t"); e != nil {
-		return writeError(e)
+		return writeJsonError(e)
 	}
 
-    buff.Write([]byte{'\n'})
+	buff.Write([]byte{'\n'})
 
 	return &jsonEvidence{buff}
 }
@@ -33,23 +33,25 @@ func JSONString(v string) Evidence {
 }
 
 func JSONObj(v interface{}) Evidence {
-	if b, e := json.Marshal(v); e != nil {
-		return writeError(e)
-	} else {
-		return JSON(b)
-	}
-}
-
-func JSONReader(r io.Reader) Evidence {
-	b, e := ioutil.ReadAll(r)
-	if e != nil {
-		return writeError(e)
+	var b []byte
+	var e error
+	if b, e = json.Marshal(v); e != nil {
+		return writeJsonError(e)
 	}
 
 	return JSON(b)
 }
 
-func writeError(e error) Evidence {
+func JSONReader(r io.Reader) Evidence {
+	b, e := ioutil.ReadAll(r)
+	if e != nil {
+		return writeJsonError(e)
+	}
+
+	return JSON(b)
+}
+
+func writeJsonError(e error) Evidence {
 	var buff bytes.Buffer
 	fmt.Fprintf(&buff, "@ %s -> %s", time.Now(), e)
 
