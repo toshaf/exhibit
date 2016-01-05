@@ -75,6 +75,16 @@ You can create JSON evidence in the following ways:
 - from reader using `JSONReader(io.Reader) Evidence`
 - from an arbitrary object using `JSONObj(interface{}) Evidence`
 
+### XML
+
+XML evidence is stored in .xml exhibit files. The XML structure is pretty printed to make diffing easier and to make the evidence file more useful as documentation.
+
+You can create XML evidence in the following ways:
+- from a string using `XMLString(string) Evidence`
+- from a slice of bytes using `XML([]byte) Evidence`
+- from reader using `XMLReader(io.Reader) Evidence`
+- from an arbitrary object using `XMLObj(interface{}) Evidence`
+
 ## Installation
 
 Simply install using `go get github.com/toshaf/exhibit` or some such.
