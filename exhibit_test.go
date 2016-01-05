@@ -19,11 +19,18 @@ type Person struct {
 	Age  int
 }
 
+type People []Person
+
+var people = People{
+	{"Ann", 38},
+	{"Bob", 65},
+	{"Jeff", 103},
+}
+
 func TestSomeJson(t *testing.T) {
-	people := []Person{
-		{"Ann", 38},
-		{"Bob", 65},
-		{"Jeff", 103},
-	}
 	Exhibit.A(JSONObj(people), t)
+}
+
+func TestSomeXml(t *testing.T) {
+	Exhibit.A(XMLObj(people), t)
 }
