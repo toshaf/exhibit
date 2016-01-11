@@ -47,3 +47,9 @@ func TestSomeJson(t *testing.T) {
 func TestSomeXml(t *testing.T) {
 	Exhibit.A(XMLObj(people), t)
 }
+
+func TestRawXml(t *testing.T) {
+    xml, _ := xml.MarshalIndent(people, "", "  ")
+
+    Exhibit.A(XMLFormatted(xml), t)
+}

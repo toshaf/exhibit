@@ -26,6 +26,13 @@ func XML(v []byte) Evidence {
 	return &xmlEvidence{buf}
 }
 
+func XMLFormatted(v []byte) Evidence {
+    buf := bytes.NewBuffer(v)
+    buf.Write([]byte("\n"))
+
+    return &xmlEvidence{*buf}
+}
+
 func XMLString(v string) Evidence {
 	return XML([]byte(v))
 }
