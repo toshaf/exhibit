@@ -11,11 +11,11 @@ var whitespace *regexp.Regexp = regexp.MustCompile(`\s+`)
 
 func functionSanitise(name string) string {
 	parts := strings.Split(name, ".")
-    if len(parts) > 1 {
-        return fmt.Sprintf("%s.%s", parts[0], parts[1])
-    }
+	if len(parts) > 1 {
+		return fmt.Sprintf("%s.%s", parts[0], parts[1])
+	}
 
-    return parts[0]
+	return parts[0]
 }
 
 func makeEvidenceFilename(evidence Evidence, label string) (string, error) {

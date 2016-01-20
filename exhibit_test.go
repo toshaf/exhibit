@@ -49,7 +49,15 @@ func TestSomeXml(t *testing.T) {
 }
 
 func TestRawXml(t *testing.T) {
-    xml, _ := xml.MarshalIndent(people, "", "  ")
+	xml, _ := xml.MarshalIndent(people, "", "  ")
 
-    Exhibit.A(XMLFormatted(xml), t)
+	Exhibit.A(XMLFormatted(xml), t)
+}
+
+// The order and layout of the exhibit file that supports
+// this test is non what you'd get from json.Indent()
+// The idea is to test for semantically equivalent JSON
+// payloads, not exact string matches
+func TestJsonTolerance(t *testing.T) {
+	Exhibit.A(JSONObj(people), t)
 }

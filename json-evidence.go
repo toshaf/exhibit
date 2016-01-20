@@ -3,16 +3,26 @@ package exhibit
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/toshaf/exhibit/core"
+	. "github.com/toshaf/exhibit/json"
 	"io"
 	"io/ioutil"
 )
 
 type jsonEvidence struct {
-	bytes.Buffer
+	buffer bytes.Buffer
 }
 
 func (*jsonEvidence) Extension() string {
 	return ".json"
+}
+
+func (j *jsonEvidence) Check(approved io.Reader) ([]core.Diff, error) {
+	return Compare(approved, &j.buffer)
+}
+
+func (j *jsonEvidence) GetValue() ([]byte, error) {
+	return j.buffer.Bytes(), nil
 }
 
 func JSON(v []byte) Evidence {

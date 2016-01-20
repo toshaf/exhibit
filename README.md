@@ -89,6 +89,10 @@ You can create XML evidence in the following ways:
 
 Simply install using `go get github.com/toshaf/exhibit` or some such.
 
+## Requirements
+
+Exhibit requires at least version 1.5 of Go
+
 ## Contribute
 
 Comments and pull requests are most welcome :)
