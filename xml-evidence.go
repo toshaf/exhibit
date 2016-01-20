@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"io"
 	"io/ioutil"
+    "github.com/toshaf/exhibit/core"
 )
 
 type xmlEvidence struct {
@@ -13,6 +14,38 @@ type xmlEvidence struct {
 
 func (*xmlEvidence) Extension() string {
 	return ".xml"
+}
+
+func (x *xmlEvidence) Check(approved io.Reader) ([]core.Diff, error) {
+    diffs := []core.Diff{}
+
+    v1, err := x.GetValue()
+    if err != nil {
+        return diffs, err
+    }
+
+    v2, err := ioutil.ReadAll(approved)
+    if err != nil && err != io.EOF {
+        return diffs, err
+    }
+
+    if bytes.Compare(v1, v2) != 0 {
+        diffs = append(diffs, core.Diff{
+            Expected: string(v1),
+            Actual: string(v2),
+        })
+    }
+
+    return diffs, nil
+}
+
+func (x *xmlEvidence) GetValue() ([]byte, error) {
+    v, err := ioutil.ReadAll(&x.Buffer)
+    if err != io.EOF && err != nil {
+        return v, err
+    }
+
+    return v, nil
 }
 
 func XML(v []byte) Evidence {
@@ -27,10 +60,10 @@ func XML(v []byte) Evidence {
 }
 
 func XMLFormatted(v []byte) Evidence {
-    buf := bytes.NewBuffer(v)
-    buf.Write([]byte("\n"))
+	buf := bytes.NewBuffer(v)
+	buf.Write([]byte("\n"))
 
-    return &xmlEvidence{*buf}
+	return &xmlEvidence{*buf}
 }
 
 func XMLString(v string) Evidence {
