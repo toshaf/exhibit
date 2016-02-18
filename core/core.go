@@ -13,6 +13,16 @@ type Diff struct {
 
 func (d *Diff) String() string {
     pos := strings.Join(d.Pos, ".")
-	return fmt.Sprintf("At %s:\n--- %s\n+++%s", pos, d.Expected, d.Actual)
+	expected := format(d.Expected)
+	actual := format(d.Actual)
+	return fmt.Sprintf("At %s:\n--- %s\n+++ %s", pos, expected, actual)
+}
+
+func format(v interface{}) string {
+	if s, is := v.(string); is {
+		return fmt.Sprintf(`"%s"`, s)
+	}
+
+	return fmt.Sprintf("%v", v)
 }
 
