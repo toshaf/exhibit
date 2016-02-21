@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/xml"
 	"github.com/toshaf/exhibit/core"
+	"github.com/toshaf/exhibit/text"
 	"io"
 	"io/ioutil"
 )
@@ -17,26 +18,7 @@ func (*xmlEvidence) Extension() string {
 }
 
 func (x *xmlEvidence) Check(approved io.Reader) ([]core.Diff, error) {
-	diffs := []core.Diff{}
-
-	v1, err := x.GetValue()
-	if err != nil {
-		return diffs, err
-	}
-
-	v2, err := ioutil.ReadAll(approved)
-	if err != nil && err != io.EOF {
-		return diffs, err
-	}
-
-	if bytes.Compare(v1, v2) != 0 {
-		diffs = append(diffs, core.Diff{
-			Expected: string(v1),
-			Actual:   string(v2),
-		})
-	}
-
-	return diffs, nil
+	return text.Compare(approved, &x.Buffer)
 }
 
 func (x *xmlEvidence) GetValue() ([]byte, error) {

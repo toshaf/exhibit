@@ -3,6 +3,7 @@ package exhibit
 import (
 	"bytes"
 	"github.com/toshaf/exhibit/core"
+	"github.com/toshaf/exhibit/text"
 	"io"
 	"io/ioutil"
 )
@@ -16,27 +17,7 @@ func (textEvidence) Extension() string {
 }
 
 func (t textEvidence) Check(approved io.Reader) ([]core.Diff, error) {
-	diffs := []core.Diff{}
-
-	v1, err := t.GetValue()
-	if err != nil {
-		return diffs, err
-	}
-
-	v2, err := ioutil.ReadAll(approved)
-	if err != nil {
-		return diffs, err
-	}
-
-	if string(v1) != string(v2) {
-		diffs = append(diffs, core.Diff{
-			Expected: string(v1),
-			Actual:   string(v2),
-			Pos:      []string{"SIMPLE TXT"},
-		})
-	}
-
-	return diffs, nil
+	return text.Compare(approved, t.Reader)
 }
 
 func (t textEvidence) GetValue() ([]byte, error) {

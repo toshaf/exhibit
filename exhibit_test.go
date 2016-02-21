@@ -1,6 +1,7 @@
 package exhibit_test
 
 import (
+	"bytes"
 	"encoding/xml"
 	. "github.com/toshaf/exhibit"
 	"testing"
@@ -8,6 +9,12 @@ import (
 
 func TestSimpleApprovedValue(t *testing.T) {
 	Exhibit.A(TextString("hi"), t)
+}
+
+func TestTextDifferingOnlyByNewlines(t *testing.T) {
+	s := bytes.NewBufferString("one\ntwo\nthree\n")
+
+	Exhibit.A(TextReader(s), t)
 }
 
 func TestMultipleExhibits(t *testing.T) {
