@@ -68,3 +68,7 @@ func TestRawXml(t *testing.T) {
 func TestJsonTolerance(t *testing.T) {
 	Exhibit.A(JSONObj(people), t)
 }
+
+func TestNamedExhibit(t *testing.T) {
+	Exhibit.Named("conf/people.conf", JSONObj(people), t)
+}

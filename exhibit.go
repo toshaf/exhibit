@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"testing"
 )
 
@@ -18,21 +19,32 @@ type Evidence interface {
 	GetValue() ([]byte, error)
 }
 
-func (E) present(evidence Evidence, label string, t *testing.T) {
+func (e E) present(evidence Evidence, label string, t *testing.T) {
 	file, err := makeEvidenceFilename(evidence, label)
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
+	e.Named(file, evidence, t)
+}
+
+func (E) Named(file string, evidence Evidence, t *testing.T){
 	if *snapshot {
 		value, err := evidence.GetValue()
 		if err != io.EOF && err != nil {
 			t.Error(err)
 			t.FailNow()
 		}
-		ioutil.WriteFile(file, []byte(value), 0644)
-		t.Logf("Writing Exhibit %s snapshot to %s", label, file)
+		err = os.MkdirAll(filepath.Dir(file), os.ModeDir|os.ModePerm)
+		if err != nil {
+			t.Error(err)
+		}
+		t.Logf("Writing Exhibit snapshot to %s", file)
+		err = ioutil.WriteFile(file, []byte(value), 0644)
+		if err != nil {
+			t.Error(err)
+		}
 		return
 	}
 
