@@ -42,7 +42,6 @@ func Text(v []byte) Evidence {
 func TextReader(r io.Reader) Evidence {
 	var b bytes.Buffer
 	io.Copy(&b, r)
-	b.Write([]byte{'\n'})
 
 	return textEvidence{&b}
 }
