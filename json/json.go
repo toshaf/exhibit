@@ -3,8 +3,9 @@ package json
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/toshaf/exhibit/core"
 	"io"
+
+	"github.com/toshaf/exhibit/core"
 )
 
 func Compare(approved, incoming io.Reader) ([]core.Diff, error) {
@@ -199,10 +200,16 @@ func decodeArray(dec *json.Decoder) (Array, error) {
 				}
 				arr = append(arr, obj)
 			case '[':
-				return decodeArray(dec)
+				subArr, err := decodeArray(dec)
+				if err != nil {
+					return arr, err
+				}
+				arr = append(arr, subArr)
 			default:
 				return nil, Errorf("Unexpected token %s", token)
 			}
+		default:
+			arr = append(arr, tok)
 		}
 	}
 }
